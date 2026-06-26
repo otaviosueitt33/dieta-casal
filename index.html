@@ -214,7 +214,7 @@
 
 <!-- CARDÁPIO -->
 <div class="section" id="cardapio">
-  <div class="tip" style="margin-bottom:1rem">Refs. 2 e 4 são cozinhadas juntas — porção diferente no prato. Ref. 3 cada um monta individual. <strong>Proteína varia na semana:</strong> frango · carne vermelha · tilápia.</div>
+  <div class="tip" style="margin-bottom:1rem">Refs. 2 e 4 cozinhadas juntas — porção diferente no prato. Ref. 3 cada um monta individual. <strong>Proteína varia na semana:</strong> frango · carne vermelha · tilápia. Pesar alimentos já prontos/cozidos.</div>
   <div class="day-tabs">
     <button class="dtab active" onclick="showDay('seg',this)">SEG</button>
     <button class="dtab" onclick="showDay('ter',this)">TER</button>
@@ -225,53 +225,225 @@
     <button class="dtab" onclick="showDay('dom',this)">DOM</button>
   </div>
 
+  <!-- SEG: Ref2=frango, Ref4=carne -->
   <div class="day-content active" id="day-seg">
-    <div class="mc"><div class="mc-num">Ref 1 · pós-treino</div><div class="mc-title">Omelete + pão de forma + mamão</div><div class="mc-items">Ovos inteiros · Pão de forma · Requeijão cremoso · Mamão formosa · Psyllium + chia</div><div class="mc-badges"><span class="badge b-ota">Ota: 3 ovos · 75g pão</span><span class="badge b-lua">Lua: 2 ovos · 50g pão</span></div></div>
-    <div class="mc"><div class="mc-num">Ref 2 · almoço</div><div class="mc-title">Arroz + feijão preto + frango + salada</div><div class="mc-items">Arroz branco · Feijão preto · Peito de frango grelhado · Salada livre · Azeite</div><div class="mc-badges"><span class="badge b-ota">Ota: 160g arroz · 120g frango</span><span class="badge b-lua">Lua: 150g arroz · 100g frango</span></div><div class="mc-note">Cozinhar junto — servir porções diferentes.</div></div>
-    <div class="mc"><div class="mc-num">Ref 3 · lanche</div><div class="mc-title">Iogurte + whey + banana + uva + amêndoa</div><div class="mc-items">Iogurte natural · Whey 30g · Banana nanica · Uva rubi · Amêndoa · Chia</div><div class="mc-badges"><span class="badge b-both">Ambos — montam individual</span></div><div class="mc-note">Ota: 100g banana + 150g uva. Lua: 100g banana + 100g uva + 20g farelo de aveia.</div></div>
-    <div class="mc"><div class="mc-num">Ref 4 · jantar</div><div class="mc-title">Carne vermelha + arroz (Ota) / batata (Lua) + legumes</div><div class="mc-items">Patinho ou filé grelhado · Arroz ou batata inglesa · Chuchu + cenoura · Azeite</div><div class="mc-badges"><span class="badge b-ota">Ota: 200g arroz · 150g carne</span><span class="badge b-lua">Lua: 200g batata · 120g carne</span></div></div>
+    <div class="mc">
+      <div class="mc-num">Ref 1 · pós-treino</div>
+      <div class="mc-title">Omelete + pão de forma + mamão</div>
+      <div class="mc-items">Pão de forma · Ovos inteiros · Requeijão cremoso · Mamão formosa · Psyllium · Chia</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 75g pão · 135g ovo (~3un) · 25g requeijão · 200g mamão · 10g psyllium · 10g chia</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 50g pão · 90g ovo (~2un) · 50g ricota · 150g mamão · 10g chia</span></div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 2 · almoço</div>
+      <div class="mc-title">Arroz + feijão preto + frango grelhado + salada</div>
+      <div class="mc-items">Arroz branco cozido · Feijão preto cozido · Peito de frango grelhado · Salada livre (mín. 150g) · Vegetais B livres · Azeite extra virgem</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 160g arroz · 80g feijão · 133g frango · 5g azeite</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 150g arroz · 100g frango · 4g azeite</span></div>
+      <div class="mc-note">Cozinhar junto — servir porções diferentes no prato.</div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 3 · lanche</div>
+      <div class="mc-title">Iogurte + whey + banana + uva + amêndoa</div>
+      <div class="mc-items">Iogurte natural · Whey Protein · Banana nanica · Uva rubi ou itália · Amêndoa · Chia</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 160g iogurte · 30g whey · 100g banana · 150g uva · 20g amêndoa · 15g chia</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 160g iogurte · 20g whey · 100g banana · 100g uva · 15g amêndoa · 20g farelo aveia · 10g chia</span></div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 4 · jantar</div>
+      <div class="mc-title">Carne vermelha + arroz (Ota) / batata (Lua) + legumes</div>
+      <div class="mc-items">Patinho / filé / músculo grelhado · Arroz (Ota) ou Batata inglesa cozida (Lua) · Cenoura + chuchu · Azeite</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 200g arroz · 150g carne · 5g azeite</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 200g batata · 120g carne · 5g azeite</span></div>
+    </div>
   </div>
 
+  <!-- TER: Ref2=tilápia, Ref4=frango -->
   <div class="day-content" id="day-ter">
-    <div class="mc"><div class="mc-num">Ref 1 · pós-treino</div><div class="mc-title">Ovos mexidos + pão + mamão (Ota) / abacaxi (Lua)</div><div class="mc-items">Ovos mexidos · Pão de forma · Queijo muçarela · Mamão (Ota) / Abacaxi (Lua) · Chia</div><div class="mc-badges"><span class="badge b-ota">Ota: 3 ovos · mamão</span><span class="badge b-lua">Lua: 2 ovos · abacaxi</span></div></div>
-    <div class="mc"><div class="mc-num">Ref 2 · almoço</div><div class="mc-title">Arroz + feijão carioca + tilápia + salada</div><div class="mc-items">Arroz branco · Feijão carioca · Filé de tilápia grelhado · Salada livre · Cenoura · Azeite</div><div class="mc-badges"><span class="badge b-both">Base igual — porção diferente</span></div></div>
-    <div class="mc"><div class="mc-num">Ref 3 · lanche</div><div class="mc-title">Iogurte + whey + banana + maçã + oleaginosa</div><div class="mc-items">Iogurte · Whey 30g · Banana · Maçã fuji · Castanha de caju (Lua) / Amêndoa (Ota) · Chia</div><div class="mc-badges"><span class="badge b-both">Ambos — montam individual</span></div></div>
-    <div class="mc"><div class="mc-num">Ref 4 · jantar</div><div class="mc-title">Frango + arroz (Ota) / batata (Lua) + legumes</div><div class="mc-items">Peito de frango grelhado · Arroz (Ota) / Batata (Lua) · Chuchu + cenoura · Azeite</div><div class="mc-badges"><span class="badge b-ota">Ota: 200g arroz · 166g frango</span><span class="badge b-lua">Lua: 200g batata · 133g frango</span></div></div>
+    <div class="mc">
+      <div class="mc-num">Ref 1 · pós-treino</div>
+      <div class="mc-title">Ovos mexidos + pão + mamão (Ota) / abacaxi (Lua)</div>
+      <div class="mc-items">Pão de forma · Ovos mexidos · Queijo muçarela · Mamão (Ota) / Abacaxi (Lua) · Chia</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 75g pão · 135g ovo (~3un) · 19g muçarela · 200g mamão · 10g chia</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 50g pão · 90g ovo (~2un) · 21g muçarela · 141g abacaxi · 10g chia</span></div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 2 · almoço</div>
+      <div class="mc-title">Arroz + feijão carioca + tilápia + salada</div>
+      <div class="mc-items">Arroz branco cozido · Feijão carioca cozido · Filé de tilápia grelhado · Salada livre (mín. 150g) · Cenoura · Azeite</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 160g arroz · 80g feijão · 167g tilápia · 5g azeite</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 150g arroz · 126g tilápia · 4g azeite</span></div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 3 · lanche</div>
+      <div class="mc-title">Iogurte + whey + banana + maçã + oleaginosa</div>
+      <div class="mc-items">Iogurte natural · Whey Protein · Banana nanica · Maçã fuji · Amêndoa (Ota) / Castanha de caju (Lua) · Chia</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 160g iogurte · 30g whey · 100g banana · 143g maçã · 20g amêndoa · 15g chia</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 160g iogurte · 20g whey · 100g banana · 95g maçã · 15g castanha · 20g farelo aveia · 10g chia</span></div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 4 · jantar</div>
+      <div class="mc-title">Frango + arroz (Ota) / batata (Lua) + legumes</div>
+      <div class="mc-items">Peito de frango grelhado · Arroz (Ota) ou Batata inglesa cozida (Lua) · Chuchu + cenoura · Azeite</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 200g arroz · 166g frango · 5g azeite</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 200g batata · 133g frango · 5g azeite</span></div>
+    </div>
   </div>
 
+  <!-- QUA: Ref2=frango desfiado, Ref4=carne -->
   <div class="day-content" id="day-qua">
-    <div class="mc"><div class="mc-num">Ref 1 · pós-treino</div><div class="mc-title">Ovos + pão (Ota) / tapioca (Lua) + mamão</div><div class="mc-items">Ovo inteiro · Pão de forma (Ota) / Tapioca (Lua) · Requeijão / Ricota · Mamão formosa · Chia</div><div class="mc-badges"><span class="badge b-ota">Ota: 75g pão + requeijão</span><span class="badge b-lua">Lua: 44g tapioca + ricota</span></div></div>
-    <div class="mc"><div class="mc-num">Ref 2 · almoço</div><div class="mc-title">Arroz + feijão preto + frango desfiado + salada</div><div class="mc-items">Arroz · Feijão preto · Frango desfiado temperado · Salada farta · Beterraba · Azeite</div><div class="mc-badges"><span class="badge b-both">Base igual — porção diferente</span></div></div>
-    <div class="mc"><div class="mc-num">Ref 3 · lanche</div><div class="mc-title">Iogurte + whey + uva + banana + aveia</div><div class="mc-items">Iogurte · Whey 30g · Uva rubi · Banana · Farelo de aveia (Lua) · Amêndoa · Chia</div><div class="mc-badges"><span class="badge b-both">Ambos — montam individual</span></div></div>
-    <div class="mc"><div class="mc-num">Ref 4 · jantar</div><div class="mc-title">Patinho + arroz (Ota) / batata (Lua) + beterraba</div><div class="mc-items">Patinho grelhado · Arroz (Ota) / Batata cozida (Lua) · Beterraba · Chuchu · Azeite</div><div class="mc-badges"><span class="badge b-ota">Ota: 200g arroz · 150g carne</span><span class="badge b-lua">Lua: 200g batata · 120g carne</span></div></div>
+    <div class="mc">
+      <div class="mc-num">Ref 1 · pós-treino</div>
+      <div class="mc-title">Ovos + pão (Ota) / tapioca (Lua) + mamão</div>
+      <div class="mc-items">Pão de forma (Ota) / Tapioca (Lua) · Ovos inteiros · Requeijão (Ota) / Ricota (Lua) · Mamão formosa · Chia</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 75g pão · 135g ovo (~3un) · 25g requeijão · 200g mamão · 10g chia</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 44g tapioca · 90g ovo (~2un) · 50g ricota · 150g mamão · 10g chia</span></div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 2 · almoço</div>
+      <div class="mc-title">Arroz + feijão preto + frango desfiado + salada</div>
+      <div class="mc-items">Arroz branco cozido · Feijão preto cozido · Frango desfiado temperado · Salada farta (mín. 150g) · Beterraba · Azeite</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 160g arroz · 80g feijão · 133g frango · 5g azeite</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 150g arroz · 100g frango · 4g azeite</span></div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 3 · lanche</div>
+      <div class="mc-title">Iogurte + whey + uva + banana + amêndoa</div>
+      <div class="mc-items">Iogurte natural · Whey Protein · Uva rubi · Banana nanica · Amêndoa · Farelo de aveia (Lua) · Chia</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 160g iogurte · 30g whey · 150g uva · 100g banana · 20g amêndoa · 15g chia</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 160g iogurte · 20g whey · 100g uva · 100g banana · 15g amêndoa · 20g farelo aveia · 10g chia</span></div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 4 · jantar</div>
+      <div class="mc-title">Carne vermelha + arroz (Ota) / batata (Lua) + beterraba</div>
+      <div class="mc-items">Patinho grelhado · Arroz (Ota) ou Batata cozida (Lua) · Beterraba + chuchu · Azeite</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 200g arroz · 150g carne · 5g azeite</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 200g batata · 120g carne · 5g azeite</span></div>
+    </div>
   </div>
 
+  <!-- QUI: Ref2=carne, Ref4=tilápia -->
   <div class="day-content" id="day-qui">
-    <div class="mc"><div class="mc-num">Ref 1 · pós-treino</div><div class="mc-title">Ovos + pão francês (Ota) / pão de forma (Lua) + maçã</div><div class="mc-items">Ovo · Pão francês (Ota) / Pão de forma (Lua) · Muçarela · Maçã fuji · Psyllium + chia</div><div class="mc-badges"><span class="badge b-ota">Ota: 63g pão francês · 3 ovos</span><span class="badge b-lua">Lua: 50g pão forma · 2 ovos</span></div></div>
-    <div class="mc"><div class="mc-num">Ref 2 · almoço</div><div class="mc-title">Arroz (Ota) / macarrão integral (Lua) + carne + salada</div><div class="mc-items">Carne vermelha magra · Arroz (Ota) / Macarrão integral c/ molho de tomate (Lua) · Salada livre · Azeite</div><div class="mc-badges"><span class="badge b-ota">Ota: 160g arroz</span><span class="badge b-lua">Lua: macarrão integral</span></div></div>
-    <div class="mc"><div class="mc-num">Ref 3 · lanche</div><div class="mc-title">Iogurte + whey + manga (Lua) / uva (Ota) + banana</div><div class="mc-items">Iogurte · Whey 30g · Manga (Lua) / Uva (Ota) · Banana · Amêndoa · Chia</div><div class="mc-badges"><span class="badge b-both">Ambos — montam individual</span></div></div>
-    <div class="mc"><div class="mc-num">Ref 4 · jantar</div><div class="mc-title">Tilápia + arroz (Ota) / batata (Lua) + chuchu</div><div class="mc-items">Filé de tilápia grelhado · Arroz (Ota) / Batata (Lua) · Chuchu + cenoura · Azeite</div><div class="mc-badges"><span class="badge b-both">Proteína igual para os dois</span></div></div>
+    <div class="mc">
+      <div class="mc-num">Ref 1 · pós-treino</div>
+      <div class="mc-title">Ovos + pão francês (Ota) / pão de forma (Lua) + maçã</div>
+      <div class="mc-items">Pão francês (Ota) / Pão de forma (Lua) · Ovos · Queijo muçarela · Maçã fuji · Psyllium (Ota) · Chia</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 63g pão francês · 135g ovo (~3un) · 19g muçarela · 200g maçã · 10g psyllium · 10g chia</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 50g pão · 90g ovo (~2un) · 21g muçarela · 123g maçã · 10g chia</span></div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 2 · almoço</div>
+      <div class="mc-title">Arroz (Ota) / macarrão integral (Lua) + carne vermelha + salada</div>
+      <div class="mc-items">Carne vermelha magra · Arroz cozido (Ota) / Macarrão integral c/ molho de tomate (Lua) · Salada livre (mín. 150g) · Azeite</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 160g arroz · 80g feijão · 120g carne · 5g azeite</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 167g macarrão · 91g carne · 4g azeite</span></div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 3 · lanche</div>
+      <div class="mc-title">Iogurte + whey + uva (Ota) / manga (Lua) + banana</div>
+      <div class="mc-items">Iogurte natural · Whey Protein · Uva rubi (Ota) / Manga (Lua) · Banana · Amêndoa · Chia</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 160g iogurte · 30g whey · 150g uva · 100g banana · 20g amêndoa · 15g chia</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 160g iogurte · 20g whey · 126g manga · 100g banana · 15g amêndoa · 20g farelo aveia · 10g chia</span></div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 4 · jantar</div>
+      <div class="mc-title">Tilápia + arroz (Ota) / batata (Lua) + chuchu</div>
+      <div class="mc-items">Filé de tilápia grelhado · Arroz (Ota) ou Batata cozida (Lua) · Chuchu + cenoura · Azeite</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 200g arroz · 209g tilápia · 5g azeite</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 200g batata · 193g tilápia · 5g azeite</span></div>
+    </div>
   </div>
 
+  <!-- SEX: Ref2=tilápia, Ref4=carne -->
   <div class="day-content" id="day-sex">
-    <div class="mc"><div class="mc-num">Ref 1 · pós-treino</div><div class="mc-title">Omelete + pão + mamão (Ota) / abacaxi (Lua)</div><div class="mc-items">Ovo · Pão de forma · Requeijão · Mamão (Ota) / Abacaxi (Lua) · Psyllium + chia</div><div class="mc-badges"><span class="badge b-ota">Ota: 3 ovos · mamão</span><span class="badge b-lua">Lua: 2 ovos · abacaxi</span></div></div>
-    <div class="mc"><div class="mc-num">Ref 2 · almoço</div><div class="mc-title">Arroz + feijão preto + tilápia + salada</div><div class="mc-items">Arroz branco · Feijão preto · Tilápia grelhada · Salada livre · Cenoura · Azeite</div><div class="mc-badges"><span class="badge b-both">Base igual — porção diferente</span></div></div>
-    <div class="mc"><div class="mc-num">Ref 3 · lanche</div><div class="mc-title">Iogurte + whey + morango + banana + amêndoa</div><div class="mc-items">Iogurte · Whey 30g · Morango · Banana · Amêndoa · Chia + aveia (Lua)</div><div class="mc-badges"><span class="badge b-both">Ambos — montam individual</span></div></div>
-    <div class="mc"><div class="mc-num">Ref 4 · jantar</div><div class="mc-title">Patinho + arroz (Ota) / batata (Lua) + legumes</div><div class="mc-items">Patinho grelhado · Arroz (Ota) / Batata (Lua) · Beterraba + chuchu · Azeite</div><div class="mc-badges"><span class="badge b-ota">Ota: 200g arroz · 150g carne</span><span class="badge b-lua">Lua: 200g batata · 120g carne</span></div></div>
+    <div class="mc">
+      <div class="mc-num">Ref 1 · pós-treino</div>
+      <div class="mc-title">Omelete + pão + mamão (Ota) / abacaxi (Lua)</div>
+      <div class="mc-items">Pão de forma · Ovos · Requeijão (Ota) / Ricota (Lua) · Mamão (Ota) / Abacaxi (Lua) · Psyllium (Ota) · Chia</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 75g pão · 135g ovo (~3un) · 25g requeijão · 200g mamão · 10g psyllium · 10g chia</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 50g pão · 90g ovo (~2un) · 50g ricota · 141g abacaxi · 10g chia</span></div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 2 · almoço</div>
+      <div class="mc-title">Arroz + feijão preto + tilápia + salada</div>
+      <div class="mc-items">Arroz branco cozido · Feijão preto cozido · Tilápia grelhada · Salada livre (mín. 150g) · Cenoura · Azeite</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 160g arroz · 80g feijão · 167g tilápia · 5g azeite</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 150g arroz · 126g tilápia · 4g azeite</span></div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 3 · lanche</div>
+      <div class="mc-title">Iogurte + whey + morango + banana + amêndoa</div>
+      <div class="mc-items">Iogurte natural · Whey Protein · Morango · Banana · Amêndoa · Farelo de aveia (Lua) · Chia</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 160g iogurte · 30g whey · 263g morango · 100g banana · 20g amêndoa · 15g chia</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 160g iogurte · 20g whey · 304g morango · 100g banana · 15g amêndoa · 20g farelo aveia · 10g chia</span></div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 4 · jantar</div>
+      <div class="mc-title">Carne vermelha + arroz (Ota) / batata (Lua) + legumes</div>
+      <div class="mc-items">Patinho grelhado · Arroz (Ota) ou Batata cozida (Lua) · Beterraba + chuchu · Azeite</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 200g arroz · 150g carne · 5g azeite</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 200g batata · 120g carne · 5g azeite</span></div>
+    </div>
   </div>
 
+  <!-- SÁB: refeições normais + jantar livre -->
   <div class="day-content" id="day-sab">
-    <div class="mc"><div class="mc-num">Ref 1</div><div class="mc-title">Ovos + pão + mamão</div><div class="mc-items">Ovos · Pão de forma · Requeijão / ricota · Mamão formosa · Chia</div><div class="mc-badges"><span class="badge b-both">Refeições normais</span></div></div>
-    <div class="mc"><div class="mc-num">Ref 2 · almoço</div><div class="mc-title">Arroz + feijão + frango + salada caprichada</div><div class="mc-items">Arroz · Feijão preto · Frango grelhado · Salada farta · Legumes · Azeite</div><div class="mc-badges"><span class="badge b-both">Almoço normal — ref. livre no jantar</span></div></div>
-    <div class="mc"><div class="mc-num">Ref 3 · lanche</div><div class="mc-title">Iogurte + whey + frutas</div><div class="mc-items">Iogurte · Whey 30g · Banana + uva ou morango · Amêndoa · Chia</div><div class="mc-badges"><span class="badge b-both">Ambos — montam individual</span></div></div>
-    <div class="livre-box"><div class="mc-num" style="color:var(--accent)">Ref. livre ✦</div><div class="mc-title" style="color:var(--accent)">Jantar livre — até 1.000 kcal cada</div><div class="mc-items" style="margin-bottom:0">Restaurante, pizza, massa, hambúrguer — o que quiserem. Pode trocar só a ref. 4 ou as refs. 3+4 juntas.</div></div>
+    <div class="mc">
+      <div class="mc-num">Ref 1</div>
+      <div class="mc-title">Ovos + pão + mamão</div>
+      <div class="mc-items">Pão de forma · Ovos · Requeijão (Ota) / Ricota (Lua) · Mamão formosa · Chia</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 75g pão · 135g ovo · 25g requeijão · 200g mamão · 10g chia</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 50g pão · 90g ovo · 50g ricota · 150g mamão · 10g chia</span></div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 2 · almoço</div>
+      <div class="mc-title">Arroz + feijão + frango + salada caprichada</div>
+      <div class="mc-items">Arroz branco · Feijão preto · Frango grelhado · Salada farta (mín. 150g) · Legumes · Azeite</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 160g arroz · 80g feijão · 133g frango · 5g azeite</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 150g arroz · 100g frango · 4g azeite</span></div>
+      <div class="mc-note">Almoço normal — ref. livre no jantar.</div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 3 · lanche</div>
+      <div class="mc-title">Iogurte + whey + banana + uva + amêndoa</div>
+      <div class="mc-items">Iogurte natural · Whey Protein · Banana · Uva ou morango · Amêndoa · Chia</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 160g iogurte · 30g whey · 100g banana · 150g uva · 20g amêndoa · 15g chia</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 160g iogurte · 20g whey · 100g banana · 100g uva · 15g amêndoa · 20g farelo aveia · 10g chia</span></div>
+    </div>
+    <div class="livre-box"><div class="mc-num" style="color:var(--accent)">Ref. livre ✦</div><div class="mc-title" style="color:var(--accent)">Jantar livre — até 1.000 kcal cada</div><div class="mc-items" style="margin-bottom:0">Restaurante, pizza, massa, hambúrguer — o que quiserem. Substitui a ref. 4 ou as refs. 3+4 juntas.</div></div>
   </div>
 
+  <!-- DOM: Ref2=carne, Ref4=frango — meal prep day -->
   <div class="day-content" id="day-dom">
-    <div class="mc"><div class="mc-num">Ref 1</div><div class="mc-title">Ovos + pão (Ota) / tapioca (Lua) + mamão</div><div class="mc-items">Ovo · Pão de forma (Ota) / Tapioca (Lua) · Requeijão / ricota · Mamão · Chia + psyllium</div><div class="mc-badges"><span class="badge b-ota">Ota: pão 75g</span><span class="badge b-lua">Lua: tapioca 44g</span></div></div>
-    <div class="mc"><div class="mc-num">Ref 2 · almoço</div><div class="mc-title">Arroz + feijão + carne vermelha + salada</div><div class="mc-items">Arroz · Feijão preto · Patinho / músculo grelhado · Salada farta · Beterraba · Azeite</div><div class="mc-badges"><span class="badge b-both">Clássico de domingo</span></div><div class="mc-note">Bom dia para meal prep: frango extra, feijão e lavar vegetais da semana.</div></div>
-    <div class="mc"><div class="mc-num">Ref 3 · lanche</div><div class="mc-title">Iogurte + whey + banana + uva / maçã</div><div class="mc-items">Iogurte · Whey 30g · Banana + Uva ou Maçã fuji · Amêndoa · Chia + aveia (Lua)</div><div class="mc-badges"><span class="badge b-both">Montam individual</span></div></div>
-    <div class="mc"><div class="mc-num">Ref 4 · jantar</div><div class="mc-title">Frango + arroz (Ota) / batata (Lua) + legumes</div><div class="mc-items">Frango grelhado · Arroz (Ota) / Batata (Lua) · Cenoura + chuchu · Azeite</div><div class="mc-badges"><span class="badge b-both">Último dia antes do mercado</span></div></div>
+    <div class="mc">
+      <div class="mc-num">Ref 1</div>
+      <div class="mc-title">Ovos + pão (Ota) / tapioca (Lua) + mamão</div>
+      <div class="mc-items">Pão de forma (Ota) / Tapioca (Lua) · Ovos · Requeijão (Ota) / Ricota (Lua) · Mamão · Psyllium (Ota) · Chia</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 75g pão · 135g ovo (~3un) · 25g requeijão · 200g mamão · 10g psyllium · 10g chia</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 44g tapioca · 90g ovo (~2un) · 50g ricota · 150g mamão · 10g chia</span></div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 2 · almoço</div>
+      <div class="mc-title">Arroz + feijão + carne vermelha + salada</div>
+      <div class="mc-items">Arroz branco · Feijão preto · Patinho / músculo grelhado · Salada farta (mín. 150g) · Beterraba · Azeite</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 160g arroz · 80g feijão · 120g carne · 5g azeite</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 150g arroz · 91g carne · 4g azeite</span></div>
+      <div class="mc-note">Bom dia para meal prep: frango extra, feijão e lavar vegetais da semana.</div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 3 · lanche</div>
+      <div class="mc-title">Iogurte + whey + banana + uva / maçã</div>
+      <div class="mc-items">Iogurte natural · Whey Protein · Banana · Uva ou Maçã fuji · Amêndoa · Farelo aveia (Lua) · Chia</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 160g iogurte · 30g whey · 100g banana · 150g uva · 20g amêndoa · 15g chia</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 160g iogurte · 20g whey · 100g banana · 100g uva · 15g amêndoa · 20g farelo aveia · 10g chia</span></div>
+    </div>
+    <div class="mc">
+      <div class="mc-num">Ref 4 · jantar</div>
+      <div class="mc-title">Frango + arroz (Ota) / batata (Lua) + legumes</div>
+      <div class="mc-items">Frango grelhado · Arroz (Ota) ou Batata cozida (Lua) · Cenoura + chuchu · Azeite</div>
+      <div class="mc-badges"><span class="badge b-ota">Ota: 200g arroz · 166g frango · 5g azeite</span></div>
+      <div class="mc-badges" style="margin-top:4px"><span class="badge b-lua">Lua: 200g batata · 133g frango · 5g azeite</span></div>
+    </div>
   </div>
 </div>
 
