@@ -113,9 +113,16 @@
   .bar-fill-lua { background: var(--lua); width: 50%; height: 8px; border-radius: 20px; }
 
   /* TREINO */
+  .pessoa-switch { display: flex; gap: 8px; margin-bottom: 1rem; }
+  .psw { padding: 7px 20px; border-radius: 20px; border: 2px solid var(--border); font-size: 13px; font-weight: 700; cursor: pointer; background: var(--surface); color: var(--muted); transition: all 0.12s; }
+  .psw.ota.active { background: var(--ota); color: #fff; border-color: var(--ota); }
+  .psw.lua.active { background: var(--lua); color: #fff; border-color: var(--lua); }
+  .pessoa-panel { display: none; }
+  .pessoa-panel.active { display: block; }
   .treino-tabs { display: flex; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
   .ttab { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); font-size: 12px; font-weight: 700; cursor: pointer; background: var(--surface); color: var(--muted); transition: all 0.12s; }
-  .ttab.active { background: var(--ota); color: #fff; border-color: var(--ota); }
+  .ttab.ota-tab.active { background: var(--ota); color: #fff; border-color: var(--ota); }
+  .ttab.lua-tab.active { background: var(--lua); color: #fff; border-color: var(--lua); }
   .treino-content { display: none; }
   .treino-content.active { display: block; }
   .ex-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -388,214 +395,151 @@
 
 <!-- TREINO -->
 <div class="section" id="treino">
-  <div class="tip" style="margin-bottom:1rem">Rotina <strong>MFS TEAM — Protocolo Casamento</strong> · Redução de gordura / hipertrofia · Intermediário. Selecione o treino do dia abaixo.</div>
+  <div class="tip" style="margin-bottom:1rem">Rotina <strong>MFS TEAM — Protocolo Casamento</strong> · Redução de gordura / hipertrofia · Intermediário.</div>
 
-  <div class="treino-tabs">
-    <button class="ttab active" onclick="showTreino('push',this)">Push</button>
-    <button class="ttab" onclick="showTreino('legs',this)">Legs</button>
-    <button class="ttab" onclick="showTreino('dorsal',this)">Dorsal</button>
-    <button class="ttab" onclick="showTreino('upper',this)">Upper</button>
-    <button class="ttab" onclick="showTreino('fullbody',this)">Fullbody</button>
+  <div class="pessoa-switch">
+    <button class="psw ota active" onclick="showPessoa('ota',this)">Otávio</button>
+    <button class="psw lua" onclick="showPessoa('lua',this)">Luana</button>
   </div>
 
-  <!-- PUSH -->
-  <div class="treino-content active" id="treino-push">
-    <h3>Push — Peito / Ombros / Tríceps</h3>
-    <div class="ex-list">
-      <div class="ex">
-        <div class="ex-name">Voador</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div>
+  <!-- OTÁVIO -->
+  <div class="pessoa-panel active" id="panel-ota">
+    <div class="treino-tabs">
+      <button class="ttab ota-tab active" onclick="showTreino('ota','push',this)">Push</button>
+      <button class="ttab ota-tab" onclick="showTreino('ota','legs',this)">Legs</button>
+      <button class="ttab ota-tab" onclick="showTreino('ota','dorsal',this)">Dorsal</button>
+      <button class="ttab ota-tab" onclick="showTreino('ota','upper',this)">Upper</button>
+      <button class="ttab ota-tab" onclick="showTreino('ota','fullbody',this)">Fullbody</button>
+    </div>
+    <div class="treino-content active" id="ota-push">
+      <h3>Push — Peito / Ombros / Tríceps</h3>
+      <div class="ex-list">
+        <div class="ex"><div class="ex-name">Voador</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Supino Inclinado Halter</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Supino Reto Máquina Horizontal</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Reconhecimento</span><div class="ex-detail">1–2× 3–4 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Desenvolvimento Máquina</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Reconhecimento</span><div class="ex-detail">1× 3–4 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">2× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Elevação Lateral Halter</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8–10 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Tríceps Corda</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Abdominal Infra</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 12 reps · intervalo 120s</div></div></div>
       </div>
-      <div class="ex">
-        <div class="ex-name">Supino Inclinado Halter</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div>
+    </div>
+    <div class="treino-content" id="ota-legs">
+      <h3>Legs — Completo</h3>
+      <div class="ex-list">
+        <div class="ex"><div class="ex-name">Panturrilha Sentado</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 15–20 reps · intervalo 50s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8–10 reps · intervalo 90s</div></div></div>
+        <div class="ex"><div class="ex-name">Cadeira Abdutora</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Flexora Unilateral Máquina</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Agachamento Livre Barra</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8/8/6 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Leg Press 45°</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Reconhecimento</span><div class="ex-detail">1–2× 3–5 reps · intervalo 50s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">2× 8–10 reps · intervalo 90s</div></div></div>
+        <div class="ex"><div class="ex-name">Cadeira Extensora</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Adução de Quadril Máquina</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8 reps · intervalo 120s</div></div></div>
       </div>
-      <div class="ex">
-        <div class="ex-name">Supino Reto Máquina Horizontal</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Reconhecimento</span><div class="ex-detail">1–2× 3–4 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div>
+    </div>
+    <div class="treino-content" id="ota-dorsal">
+      <h3>Dorsal — Costas / Bíceps</h3>
+      <div class="ex-list">
+        <div class="ex"><div class="ex-name">Front Lat Pulldown Unilateral</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Remada Curvada</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Reconhecimento</span><div class="ex-detail">1–2× 3–4 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Remada Máquina Pegada Neutra</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Reconhecimento</span><div class="ex-detail">1× 3–4 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Crucifixo Inverso na Polia Alta</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Rosca Banco 60°</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 50s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8–10 reps · intervalo 90s</div></div></div>
+        <div class="ex"><div class="ex-name">Rosca Scott Máquina</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">2× 8–10 reps · intervalo 90s</div></div></div>
+        <div class="ex"><div class="ex-name">Abdominal Máquina</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8 reps · intervalo 120s</div></div></div>
       </div>
-      <div class="ex">
-        <div class="ex-name">Desenvolvimento Máquina</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Reconhecimento</span><div class="ex-detail">1× 3–4 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">2× 6–8 reps · intervalo 120s</div></div>
+    </div>
+    <div class="treino-content" id="ota-upper">
+      <h3>Upper — Peito / Ombros / Braços</h3>
+      <div class="ex-list">
+        <div class="ex"><div class="ex-name">Abdominal Máquina</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8–10 reps · intervalo 90s</div></div></div>
+        <div class="ex"><div class="ex-name">Supino Inclinado Máquina</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Supino Reto Barra</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 · carga 40kg · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">2× 8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Cross Over Polia Alta</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">2× 3–4 · carga 20kg · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">2× 8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Elevação Lateral Máquina</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 15–20 reps · intervalo 50s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8–10 reps · intervalo 90s</div></div></div>
+        <div class="combined-banner">⇄ Exercícios combinados — alternar entre os dois</div>
+        <div class="ex"><div class="ex-name">Rosca Martelo</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Tríceps Francês Corda</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 15–20 reps · intervalo 50s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8–10 reps · intervalo 90s</div></div></div>
+        <div class="ex"><div class="ex-name">Prancha Isométrica</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3 séries · 60s cada</div></div></div>
       </div>
-      <div class="ex">
-        <div class="ex-name">Elevação Lateral Halter</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8–10 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Tríceps Corda</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Abdominal Infra</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 12 reps · intervalo 120s</div></div>
+    </div>
+    <div class="treino-content" id="ota-fullbody">
+      <h3>Fullbody — Corpo Completo</h3>
+      <div class="ex-list">
+        <div class="ex"><div class="ex-name">Elevação Pélvica Máquina</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Cadeira Flexora</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Levantamento Terra</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Búlgaro com 2 Halteres</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">2× 8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Puxada Alta Triângulo</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">2× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Remada Baixa Aberta</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">2× 6–8 reps · intervalo 120s</div></div></div>
       </div>
     </div>
   </div>
 
-  <!-- LEGS -->
-  <div class="treino-content" id="treino-legs">
-    <h3>Legs — Completo</h3>
-    <div class="ex-list">
-      <div class="ex">
-        <div class="ex-name">Panturrilha Sentado</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 15–20 reps · intervalo 50s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8–10 reps · intervalo 90s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Cadeira Abdutora</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Flexora Unilateral Máquina</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Agachamento Livre Barra</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8/8/6 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Leg Press 45°</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Reconhecimento</span><div class="ex-detail">1–2× 3–5 reps · intervalo 50s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">2× 8–10 reps · intervalo 90s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Cadeira Extensora</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Adução de Quadril Máquina</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8 reps · intervalo 120s</div></div>
+  <!-- LUANA -->
+  <div class="pessoa-panel" id="panel-lua">
+    <div class="treino-tabs">
+      <button class="ttab lua-tab active" onclick="showTreino('lua','lower1',this)">Lower 01</button>
+      <button class="ttab lua-tab" onclick="showTreino('lua','upper1',this)">Upper 01</button>
+      <button class="ttab lua-tab" onclick="showTreino('lua','lower2',this)">Lower 02</button>
+      <button class="ttab lua-tab" onclick="showTreino('lua','upper2',this)">Upper 02</button>
+      <button class="ttab lua-tab" onclick="showTreino('lua','lower3',this)">Lower 03</button>
+    </div>
+    <div class="treino-content active" id="lua-lower1">
+      <h3>Lower 01 — Quadríceps / Glúteos</h3>
+      <div class="ex-list">
+        <div class="ex"><div class="ex-name">Cadeira Abdutora</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 12–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 10–12 reps · intervalo 90s</div></div></div>
+        <div class="ex"><div class="ex-name">Cadeira Flexora</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 15–20 reps</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8 reps</div></div></div>
+        <div class="ex"><div class="ex-name">Leg Press 45°</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 12–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8–10 reps · intervalo 90s</div></div></div>
+        <div class="ex"><div class="ex-name">Agachamento Livre Barra</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Reconhecimento</span><div class="ex-detail">1× 3–4 reps · carga média</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8/8/6 reps</div></div></div>
+        <div class="ex"><div class="ex-name">Cadeira Extensora</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Abdução de Quadril na Polia</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 12 reps</div></div></div>
+        <div class="ex"><div class="ex-name">Abdominal Máquina</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 12 reps</div></div></div>
       </div>
     </div>
-  </div>
-
-  <!-- DORSAL -->
-  <div class="treino-content" id="treino-dorsal">
-    <h3>Dorsal — Costas / Bíceps</h3>
-    <div class="ex-list">
-      <div class="ex">
-        <div class="ex-name">Front Lat Pulldown Unilateral</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Remada Curvada</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Reconhecimento</span><div class="ex-detail">1–2× 3–4 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Remada Máquina Pegada Neutra</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Reconhecimento</span><div class="ex-detail">1× 3–4 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Crucifixo Inverso na Polia Alta</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Rosca Banco 60°</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 50s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8–10 reps · intervalo 90s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Rosca Scott Máquina</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">2× 8–10 reps · intervalo 90s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Abdominal Máquina</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8 reps · intervalo 120s</div></div>
+    <div class="treino-content" id="lua-upper1">
+      <h3>Upper 01 — Superior Completo</h3>
+      <div class="ex-list">
+        <div class="ex"><div class="ex-name">Elevação Lateral Halter</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Desenvolvimento Halter</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Puxada Alta Triângulo</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Low Row (Remada Unilateral)</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Crucifixo Inverso na Polia Alta</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8 reps</div></div></div>
+        <div class="ex"><div class="ex-name">Tríceps na Polia Barra W</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8 reps</div></div></div>
+        <div class="ex"><div class="ex-name">Prancha Isométrica Lateral Baixa</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× máximo</div></div></div>
       </div>
     </div>
-  </div>
-
-  <!-- UPPER -->
-  <div class="treino-content" id="treino-upper">
-    <h3>Upper — Peito / Ombros / Braços</h3>
-    <div class="ex-list">
-      <div class="ex">
-        <div class="ex-name">Abdominal Máquina</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8–10 reps · intervalo 90s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Supino Inclinado Máquina</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Supino Reto Barra</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 · carga 40kg · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">2× 8 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Cross Over Polia Alta</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">2× 3–4 · carga 20kg · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">2× 8 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Elevação Lateral Máquina</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 15–20 reps · intervalo 50s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8–10 reps · intervalo 90s</div></div>
-      </div>
-      <div class="combined-banner">⇄ Exercícios combinados — alternar entre os dois</div>
-      <div class="ex">
-        <div class="ex-name">Rosca Martelo</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Tríceps Francês Corda</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 15–20 reps · intervalo 50s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8–10 reps · intervalo 90s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Prancha Isométrica</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3 séries · 60s cada</div></div>
+    <div class="treino-content" id="lua-lower2">
+      <h3>Lower 02 — Posterior / Glúteos</h3>
+      <div class="ex-list">
+        <div class="ex"><div class="ex-name">Abdução de Quadril na Polia Baixa Unilateral</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 12–15 reps</div></div></div>
+        <div class="ex"><div class="ex-name">Levantamento Terra Sumô</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 12–15 reps · depois 1× 3–6 reconhecimento</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 10/8/6 reps</div></div></div>
+        <div class="ex"><div class="ex-name">Búlgaro com 2 Halteres</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8 reps · ou afundo com step atrás</div></div></div>
+        <div class="ex"><div class="ex-name">Flexora Unilateral Máquina</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8 reps</div></div></div>
+        <div class="ex"><div class="ex-name">Abdução de Quadril Máquina (corpo à frente)</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">4× 12–15 reps</div></div></div>
+        <div class="ex"><div class="ex-name">Glúteo Extensão na Polia</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 10–12 reps</div></div></div>
       </div>
     </div>
-  </div>
-
-  <!-- FULLBODY -->
-  <div class="treino-content" id="treino-fullbody">
-    <h3>Fullbody — Corpo Completo</h3>
-    <div class="ex-list">
-      <div class="ex">
-        <div class="ex-name">Elevação Pélvica Máquina</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div>
+    <div class="treino-content" id="lua-upper2">
+      <h3>Upper 02 — Superior Completo</h3>
+      <div class="ex-list">
+        <div class="ex"><div class="ex-name">Pulldown Corda</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">2× 15–20 · carga 15kg · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Remada Baixa Aberta</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6/8/8 reps · carga 30kg · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Remada Unilateral Halter no Banco Inclinado</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8 reps · carga 18kg · intervalo 90s</div></div></div>
+        <div class="ex"><div class="ex-name">Elevação Lateral Unilateral Polia Baixa</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 · carga 5kg · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8 reps · carga 5kg · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Rosca Scott Máquina</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Tríceps Francês Corda</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 · carga 10kg · intervalo 40s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · carga 20kg · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Abdominal Infra Banco Declinado</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 12 reps · elevação de quadril · intervalo 90s</div></div></div>
       </div>
-      <div class="ex">
-        <div class="ex-name">Cadeira Flexora</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Levantamento Terra</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Búlgaro com 2 Halteres</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">2× 8 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Puxada Alta Triângulo</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">2× 6–8 reps · intervalo 120s</div></div>
-      </div>
-      <div class="ex">
-        <div class="ex-name">Remada Baixa Aberta</div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">1× 11–15 reps · intervalo 40s</div></div>
-        <div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">2× 6–8 reps · intervalo 120s</div></div>
+    </div>
+    <div class="treino-content" id="lua-lower3">
+      <h3>Lower 03 — Inferior Completo</h3>
+      <div class="ex-list">
+        <div class="ex"><div class="ex-name">Cadeira Abdutora</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">4× 12/12/falha/falha · intervalo 90s · abdutora 45° com 2" de pico</div></div></div>
+        <div class="ex"><div class="ex-name">Belt-Squat Agachamento Sumô</div><div class="ex-phase"><span class="ex-tag ex-tag-warm">Aquecimento</span><div class="ex-detail">2× 15–20 reps · intervalo 45s</div></div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 6–8 reps · intervalo 120s</div></div></div>
+        <div class="ex"><div class="ex-name">Afundo com Halteres entre Steps</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8 reps · intervalo 90s</div></div></div>
+        <div class="ex"><div class="ex-name">Cadeira Extensora Unilateral</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8–10 reps · intervalo 90s</div></div></div>
+        <div class="ex"><div class="ex-name">Mesa Flexora</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 8/8/falha</div></div></div>
+        <div class="ex"><div class="ex-name">Hiperextensão de Lombar</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 12 reps · pés abduzidos, contrair glúteo no topo</div></div></div>
+        <div class="ex"><div class="ex-name">Abdominal Infra</div><div class="ex-phase"><span class="ex-tag ex-tag-work">Trabalho</span><div class="ex-detail">3× 12 reps</div></div></div>
       </div>
     </div>
   </div>
@@ -610,10 +554,17 @@ function show(id, el) {
   document.getElementById(id).classList.add('active');
   el.classList.add('active');
 }
-function showTreino(id, el) {
-  document.querySelectorAll('.treino-content').forEach(d => d.classList.remove('active'));
-  document.querySelectorAll('.ttab').forEach(t => t.classList.remove('active'));
-  document.getElementById('treino-' + id).classList.add('active');
+function showPessoa(pessoa, el) {
+  document.querySelectorAll('.pessoa-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.psw').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + pessoa).classList.add('active');
+  el.classList.add('active');
+}
+function showTreino(pessoa, id, el) {
+  var panel = document.getElementById('panel-' + pessoa);
+  panel.querySelectorAll('.treino-content').forEach(d => d.classList.remove('active'));
+  panel.querySelectorAll('.ttab').forEach(t => t.classList.remove('active'));
+  document.getElementById(pessoa + '-' + id).classList.add('active');
   el.classList.add('active');
 }
 function showDay(id, el) {
