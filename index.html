@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano Alimentar — Otávio & Luana</title>
+<style>
+  :root {
+    --ota: #2a78d6;
+    --ota-bg: #e8f1fb;
+    --ota-text: #1a5199;
+    --lua: #0f9e6a;
+    --lua-bg: #e0f5ed;
+    --lua-text: #0a7550;
+    --both: #6d5fbb;
+    --both-bg: #eeecfb;
+    --both-text: #4a3aa7;
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --border: rgba(0,0,0,0.09);
+    --text: #1a1a18;
+    --muted: #6b6a65;
+    --light: #f0efe9;
+    --accent: #e85d26;
+    --accent-bg: #fdf0ea;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
+
+  header { background: var(--text); color: #fff; padding: 2rem 2rem 1.5rem; }
+  header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+  header p { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 4px; }
+  .header-badges { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .hb { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.02em; }
+  .hb-ota { background: var(--ota); color: #fff; }
+  .hb-lua { background: var(--lua); color: #fff; }
+
+  nav { display: flex; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; position: sticky; top: 0; z-index: 100; }
+  nav a { padding: 13px 20px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; border-bottom: 2px solid transparent; white-space: nowrap; cursor: pointer; transition: all 0.15s; }
+  nav a:hover { color: var(--text); }
+  nav a.active { color: var(--text); border-bottom-color: var(--accent); }
+
+  main { max-width: 860px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+  .section { display: none; }
+  .section.active { display: block; }
+
+  h2 { font-size: 16px; font-weight: 600; margin: 0 0 1rem; }
+  h3 { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin: 1.5rem 0 0.6rem; }
+  h3:first-child { margin-top: 0; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .gridc { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; }
+  .card-ota { border-top: 3px solid var(--ota); }
+  .card-lua { border-top: 3px solid var(--lua); }
+
+  .profile-name { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+  .stat { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid var(--light); font-size: 13px; }
+  .stat:last-child { border-bottom: none; }
+  .stat-l { color: var(--muted); }
+  .stat-r { font-weight: 600; }
+
+  .tip { border-left: 3px solid var(--accent); background: var(--accent-bg); border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; margin-bottom: 12px; line-height: 1.7; }
+  .tip strong { color: var(--accent); }
+  .tip-green { background: var(--lua-bg); border-left-color: var(--lua); }
+  .tip-green strong { color: var(--lua-text); }
+
+  .kpi-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.75rem 1rem; }
+  .kpi-label { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+  .kpi-val { font-size: 20px; font-weight: 700; }
+  .kpi-sub { font-size: 11.5px; color: var(--muted); margin-top: 1px; }
+
+  /* CARDÁPIO */
+  .day-tabs { display: flex; gap: 4px; margin-bottom: 1rem; flex-wrap: wrap; }
+  .dtab { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); font-size: 12px; font-weight: 700; cursor: pointer; background: var(--surface); color: var(--muted); transition: all 0.12s; }
+  .dtab.active { background: var(--text); color: #fff; border-color: var(--text); }
+  .dtab.livre { border-color: var(--accent); color: var(--accent); }
+  .dtab.livre.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  .day-content { display: none; }
+  .day-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .mc { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.875rem 1rem; }
+  .mc-num { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 2px; }
+  .mc-title { font-size: 13.5px; font-weight: 700; margin-bottom: 6px; }
+  .mc-items { font-size: 12.5px; color: var(--muted); line-height: 1.75; margin-bottom: 8px; }
+  .mc-badges { display: flex; gap: 5px; flex-wrap: wrap; }
+  .badge { padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+  .b-ota { background: var(--ota-bg); color: var(--ota-text); }
+  .b-lua { background: var(--lua-bg); color: var(--lua-text); }
+  .b-both { background: var(--both-bg); color: var(--both-text); }
+  .mc-note { font-size: 11.5px; color: var(--muted); font-style: italic; margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--light); }
+  .livre-box { grid-column: 1 / -1; background: var(--accent-bg); border: 2px dashed var(--accent); border-radius: 10px; padding: 1rem; text-align: center; }
+
+  /* COMPRAS */
+  .compras-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+  .item-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; }
+  .item-qty { font-weight: 700; color: var(--ota-text); font-size: 12px; background: var(--ota-bg); padding: 2px 8px; border-radius: 20px; white-space: nowrap; margin-left: 8px; }
+
+  /* SUPLEMENTOS */
+  .supl-table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 1rem; }
+  .supl-table th { background: var(--light); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding: 9px 14px; text-align: left; }
+  .supl-table td { padding: 11px 14px; border-bottom: 1px solid var(--light); font-size: 13px; vertical-align: top; }
+  .supl-table tr:last-child td { border-bottom: none; }
+  .sn { font-weight: 700; }
+  .sd { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  .agua-item { margin-bottom: 14px; }
+  .agua-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; }
+  .bar-track { background: var(--light); border-radius: 20px; height: 8px; }
+  .bar-fill-ota { background: var(--ota); width: 75%; height: 8px; border-radius: 20px; }
+  .bar-fill-lua { background: var(--lua); width: 50%; height: 8px; border-radius: 20px; }
+
+  @media (max-width: 600px) {
+    .grid2, .day-content.active, .compras-grid { grid-template-columns: 1fr; }
+    .livre-box { grid-column: auto; }
+    nav a { padding: 10px 14px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Plano Alimentar — Otávio &amp; Luana</h1>
+  <p>Carbo alto · 4 refeições/dia · Junho 2026</p>
+  <div class="header-badges">
+    <span class="hb hb-ota">Otávio — 2.357 kcal · déficit −488</span>
+    <span class="hb hb-lua">Luana — 1.701 kcal · déficit −366</span>
+  </div>
+</header>
+
+<nav>
+  <a class="active" onclick="show('visao',this)">Visão geral</a>
+  <a onclick="show('cardapio',this)">Cardápio</a>
+  <a onclick="show('compras',this)">Compras</a>
+  <a onclick="show('suplementos',this)">Suplementos</a>
+</nav>
+
+<main>
+
+<!-- VISÃO GERAL -->
+<div class="section active" id="visao">
+  <div class="grid2" style="margin-bottom:1rem">
+    <div class="card card-ota">
+      <div class="profile-name" style="color:var(--ota)">Otávio <span style="font-size:12px;font-weight:400;color:var(--muted)">78 kg · 175 cm · 34 anos</span></div>
+      <div class="stat"><span class="stat-l">GET</span><span class="stat-r">2.845 kcal</span></div>
+      <div class="stat"><span class="stat-l">Meta diária</span><span class="stat-r">2.357 kcal (−488)</span></div>
+      <div class="stat"><span class="stat-l">Proteína</span><span class="stat-r">182 g</span></div>
+      <div class="stat"><span class="stat-l">Carboidrato</span><span class="stat-r">229 g</span></div>
+      <div class="stat"><span class="stat-l">Gordura</span><span class="stat-r">84 g</span></div>
+      <div class="stat"><span class="stat-l">Água</span><span class="stat-r">1.950–3.900 ml</span></div>
+      <div class="stat"><span class="stat-l">Objetivo</span><span class="stat-r">Sensibilidade à insulina</span></div>
+      <div class="stat"><span class="stat-l">Ref. livre</span><span class="stat-r">1× até 1.000 kcal/sem</span></div>
+    </div>
+    <div class="card card-lua">
+      <div class="profile-name" style="color:var(--lua)">Luana <span style="font-size:12px;font-weight:400;color:var(--muted)">54 kg · 158 cm · 32 anos</span></div>
+      <div class="stat"><span class="stat-l">GET</span><span class="stat-r">2.067 kcal</span></div>
+      <div class="stat"><span class="stat-l">Meta diária</span><span class="stat-r">1.701 kcal (−366)</span></div>
+      <div class="stat"><span class="stat-l">Proteína</span><span class="stat-r">140 g</span></div>
+      <div class="stat"><span class="stat-l">Carboidrato</span><span class="stat-r">165 g</span></div>
+      <div class="stat"><span class="stat-l">Gordura</span><span class="stat-r">57 g</span></div>
+      <div class="stat"><span class="stat-l">Água</span><span class="stat-r">1.350–2.700 ml</span></div>
+      <div class="stat"><span class="stat-l">Objetivo</span><span class="stat-r">Hipertrofia / composição</span></div>
+      <div class="stat"><span class="stat-l">Ref. livre</span><span class="stat-r">1× até 1.000 kcal/sem</span></div>
+    </div>
+  </div>
+
+  <div class="tip"><strong>Regra do prato:</strong> refeições 2 e 4 são cozinhadas juntas com os mesmos ingredientes. O prato da Luana é a referência — Otávio serve ~30% a mais de arroz e proteína. Na prática: 1 concha a mais de arroz + 1 pedaço extra de proteína.</div>
+  <div class="tip tip-green"><strong>Refeição livre semanal:</strong> ambos têm 1 refeição livre de até 1.000 kcal por semana. Sábado à noite costuma ser o melhor momento — substitui a ref. 4 ou as refs. 3+4.</div>
+
+  <h3>Kcal por refeição — Otávio</h3>
+  <div class="gridc">
+    <div class="kpi-card"><div class="kpi-label">Ref 1 · pós-treino</div><div class="kpi-val" style="color:var(--ota)">702 kcal</div><div class="kpi-sub">P 33g · C 59g · G 32g</div></div>
+    <div class="kpi-card"><div class="kpi-label">Ref 2 · almoço</div><div class="kpi-val" style="color:var(--ota)">527 kcal</div><div class="kpi-sub">P 51g · C 56g · G 15g</div></div>
+    <div class="kpi-card"><div class="kpi-label">Ref 3 · lanche</div><div class="kpi-val" style="color:var(--ota)">558 kcal</div><div class="kpi-sub">P 39g · C 57g · G 21g</div></div>
+    <div class="kpi-card"><div class="kpi-label">Ref 4 · jantar</div><div class="kpi-val" style="color:var(--ota)">571 kcal</div><div class="kpi-sub">P 59g · C 56g · G 16g</div></div>
+  </div>
+
+  <h3>Kcal por refeição — Luana</h3>
+  <div class="gridc">
+    <div class="kpi-card"><div class="kpi-label">Ref 1 · café da manhã</div><div class="kpi-val" style="color:var(--lua)">439 kcal</div><div class="kpi-sub">P 27g · C 43g · G 17g</div></div>
+    <div class="kpi-card"><div class="kpi-label">Ref 2 · almoço</div><div class="kpi-val" style="color:var(--lua)">391 kcal</div><div class="kpi-sub">P 35g · C 42g · G 8g</div></div>
+    <div class="kpi-card"><div class="kpi-label">Ref 3 · lanche</div><div class="kpi-val" style="color:var(--lua)">508 kcal</div><div class="kpi-sub">P 33g · C 56g · G 19g</div></div>
+    <div class="kpi-card"><div class="kpi-label">Ref 4 · jantar</div><div class="kpi-val" style="color:var(--lua)">363 kcal</div><div class="kpi-sub">P 45g · C 24g · G 14g</div></div>
+  </div>
+</div>
+
+<!-- CARDÁPIO -->
+<div class="section" id="cardapio">
+  <div class="tip" style="margin-bottom:1rem">Refs. 2 e 4 são cozinhadas juntas — porção diferente no prato. Ref. 3 cada um monta individual. <strong>Proteína varia na semana:</strong> frango · carne vermelha · tilápia.</div>
+  <div class="day-tabs">
+    <button class="dtab active" onclick="showDay('seg',this)">SEG</button>
+    <button class="dtab" onclick="showDay('ter',this)">TER</button>
+    <button class="dtab" onclick="showDay('qua',this)">QUA</button>
+    <button class="dtab" onclick="showDay('qui',this)">QUI</button>
+    <button class="dtab" onclick="showDay('sex',this)">SEX</button>
+    <button class="dtab livre" onclick="showDay('sab',this)">SÁB ✦</button>
+    <button class="dtab" onclick="showDay('dom',this)">DOM</button>
+  </div>
+
+  <div class="day-content active" id="day-seg">
+    <div class="mc"><div class="mc-num">Ref 1 · pós-treino</div><div class="mc-title">Omelete + pão de forma + mamão</div><div class="mc-items">Ovos inteiros · Pão de forma · Requeijão cremoso · Mamão formosa · Psyllium + chia</div><div class="mc-badges"><span class="badge b-ota">Ota: 3 ovos · 75g pão</span><span class="badge b-lua">Lua: 2 ovos · 50g pão</span></div></div>
+    <div class="mc"><div class="mc-num">Ref 2 · almoço</div><div class="mc-title">Arroz + feijão preto + frango + salada</div><div class="mc-items">Arroz branco · Feijão preto · Peito de frango grelhado · Salada livre · Azeite</div><div class="mc-badges"><span class="badge b-ota">Ota: 160g arroz · 120g frango</span><span class="badge b-lua">Lua: 150g arroz · 100g frango</span></div><div class="mc-note">Cozinhar junto — servir porções diferentes.</div></div>
+    <div class="mc"><div class="mc-num">Ref 3 · lanche</div><div class="mc-title">Iogurte + whey + banana + uva + amêndoa</div><div class="mc-items">Iogurte natural · Whey 30g · Banana nanica · Uva rubi · Amêndoa · Chia</div><div class="mc-badges"><span class="badge b-both">Ambos — montam individual</span></div><div class="mc-note">Ota: 100g banana + 150g uva. Lua: 100g banana + 100g uva + 20g farelo de aveia.</div></div>
+    <div class="mc"><div class="mc-num">Ref 4 · jantar</div><div class="mc-title">Carne vermelha + arroz (Ota) / batata (Lua) + legumes</div><div class="mc-items">Patinho ou filé grelhado · Arroz ou batata inglesa · Chuchu + cenoura · Azeite</div><div class="mc-badges"><span class="badge b-ota">Ota: 200g arroz · 150g carne</span><span class="badge b-lua">Lua: 200g batata · 120g carne</span></div></div>
+  </div>
+
+  <div class="day-content" id="day-ter">
+    <div class="mc"><div class="mc-num">Ref 1 · pós-treino</div><div class="mc-title">Ovos mexidos + pão + mamão (Ota) / abacaxi (Lua)</div><div class="mc-items">Ovos mexidos · Pão de forma · Queijo muçarela · Mamão (Ota) / Abacaxi (Lua) · Chia</div><div class="mc-badges"><span class="badge b-ota">Ota: 3 ovos · mamão</span><span class="badge b-lua">Lua: 2 ovos · abacaxi</span></div></div>
+    <div class="mc"><div class="mc-num">Ref 2 · almoço</div><div class="mc-title">Arroz + feijão carioca + tilápia + salada</div><div class="mc-items">Arroz branco · Feijão carioca · Filé de tilápia grelhado · Salada livre · Cenoura · Azeite</div><div class="mc-badges"><span class="badge b-both">Base igual — porção diferente</span></div></div>
+    <div class="mc"><div class="mc-num">Ref 3 · lanche</div><div class="mc-title">Iogurte + whey + banana + maçã + oleaginosa</div><div class="mc-items">Iogurte · Whey 30g · Banana · Maçã fuji · Castanha de caju (Lua) / Amêndoa (Ota) · Chia</div><div class="mc-badges"><span class="badge b-both">Ambos — montam individual</span></div></div>
+    <div class="mc"><div class="mc-num">Ref 4 · jantar</div><div class="mc-title">Frango + arroz (Ota) / batata (Lua) + legumes</div><div class="mc-items">Peito de frango grelhado · Arroz (Ota) / Batata (Lua) · Chuchu + cenoura · Azeite</div><div class="mc-badges"><span class="badge b-ota">Ota: 200g arroz · 166g frango</span><span class="badge b-lua">Lua: 200g batata · 133g frango</span></div></div>
+  </div>
+
+  <div class="day-content" id="day-qua">
+    <div class="mc"><div class="mc-num">Ref 1 · pós-treino</div><div class="mc-title">Ovos + pão (Ota) / tapioca (Lua) + mamão</div><div class="mc-items">Ovo inteiro · Pão de forma (Ota) / Tapioca (Lua) · Requeijão / Ricota · Mamão formosa · Chia</div><div class="mc-badges"><span class="badge b-ota">Ota: 75g pão + requeijão</span><span class="badge b-lua">Lua: 44g tapioca + ricota</span></div></div>
+    <div class="mc"><div class="mc-num">Ref 2 · almoço</div><div class="mc-title">Arroz + feijão preto + frango desfiado + salada</div><div class="mc-items">Arroz · Feijão preto · Frango desfiado temperado · Salada farta · Beterraba · Azeite</div><div class="mc-badges"><span class="badge b-both">Base igual — porção diferente</span></div></div>
+    <div class="mc"><div class="mc-num">Ref 3 · lanche</div><div class="mc-title">Iogurte + whey + uva + banana + aveia</div><div class="mc-items">Iogurte · Whey 30g · Uva rubi · Banana · Farelo de aveia (Lua) · Amêndoa · Chia</div><div class="mc-badges"><span class="badge b-both">Ambos — montam individual</span></div></div>
+    <div class="mc"><div class="mc-num">Ref 4 · jantar</div><div class="mc-title">Patinho + arroz (Ota) / batata (Lua) + beterraba</div><div class="mc-items">Patinho grelhado · Arroz (Ota) / Batata cozida (Lua) · Beterraba · Chuchu · Azeite</div><div class="mc-badges"><span class="badge b-ota">Ota: 200g arroz · 150g carne</span><span class="badge b-lua">Lua: 200g batata · 120g carne</span></div></div>
+  </div>
+
+  <div class="day-content" id="day-qui">
+    <div class="mc"><div class="mc-num">Ref 1 · pós-treino</div><div class="mc-title">Ovos + pão francês (Ota) / pão de forma (Lua) + maçã</div><div class="mc-items">Ovo · Pão francês (Ota) / Pão de forma (Lua) · Muçarela · Maçã fuji · Psyllium + chia</div><div class="mc-badges"><span class="badge b-ota">Ota: 63g pão francês · 3 ovos</span><span class="badge b-lua">Lua: 50g pão forma · 2 ovos</span></div></div>
+    <div class="mc"><div class="mc-num">Ref 2 · almoço</div><div class="mc-title">Arroz (Ota) / macarrão integral (Lua) + carne + salada</div><div class="mc-items">Carne vermelha magra · Arroz (Ota) / Macarrão integral c/ molho de tomate (Lua) · Salada livre · Azeite</div><div class="mc-badges"><span class="badge b-ota">Ota: 160g arroz</span><span class="badge b-lua">Lua: macarrão integral</span></div></div>
+    <div class="mc"><div class="mc-num">Ref 3 · lanche</div><div class="mc-title">Iogurte + whey + manga (Lua) / uva (Ota) + banana</div><div class="mc-items">Iogurte · Whey 30g · Manga (Lua) / Uva (Ota) · Banana · Amêndoa · Chia</div><div class="mc-badges"><span class="badge b-both">Ambos — montam individual</span></div></div>
+    <div class="mc"><div class="mc-num">Ref 4 · jantar</div><div class="mc-title">Tilápia + arroz (Ota) / batata (Lua) + chuchu</div><div class="mc-items">Filé de tilápia grelhado · Arroz (Ota) / Batata (Lua) · Chuchu + cenoura · Azeite</div><div class="mc-badges"><span class="badge b-both">Proteína igual para os dois</span></div></div>
+  </div>
+
+  <div class="day-content" id="day-sex">
+    <div class="mc"><div class="mc-num">Ref 1 · pós-treino</div><div class="mc-title">Omelete + pão + mamão (Ota) / abacaxi (Lua)</div><div class="mc-items">Ovo · Pão de forma · Requeijão · Mamão (Ota) / Abacaxi (Lua) · Psyllium + chia</div><div class="mc-badges"><span class="badge b-ota">Ota: 3 ovos · mamão</span><span class="badge b-lua">Lua: 2 ovos · abacaxi</span></div></div>
+    <div class="mc"><div class="mc-num">Ref 2 · almoço</div><div class="mc-title">Arroz + feijão preto + tilápia + salada</div><div class="mc-items">Arroz branco · Feijão preto · Tilápia grelhada · Salada livre · Cenoura · Azeite</div><div class="mc-badges"><span class="badge b-both">Base igual — porção diferente</span></div></div>
+    <div class="mc"><div class="mc-num">Ref 3 · lanche</div><div class="mc-title">Iogurte + whey + morango + banana + amêndoa</div><div class="mc-items">Iogurte · Whey 30g · Morango · Banana · Amêndoa · Chia + aveia (Lua)</div><div class="mc-badges"><span class="badge b-both">Ambos — montam individual</span></div></div>
+    <div class="mc"><div class="mc-num">Ref 4 · jantar</div><div class="mc-title">Patinho + arroz (Ota) / batata (Lua) + legumes</div><div class="mc-items">Patinho grelhado · Arroz (Ota) / Batata (Lua) · Beterraba + chuchu · Azeite</div><div class="mc-badges"><span class="badge b-ota">Ota: 200g arroz · 150g carne</span><span class="badge b-lua">Lua: 200g batata · 120g carne</span></div></div>
+  </div>
+
+  <div class="day-content" id="day-sab">
+    <div class="mc"><div class="mc-num">Ref 1</div><div class="mc-title">Ovos + pão + mamão</div><div class="mc-items">Ovos · Pão de forma · Requeijão / ricota · Mamão formosa · Chia</div><div class="mc-badges"><span class="badge b-both">Refeições normais</span></div></div>
+    <div class="mc"><div class="mc-num">Ref 2 · almoço</div><div class="mc-title">Arroz + feijão + frango + salada caprichada</div><div class="mc-items">Arroz · Feijão preto · Frango grelhado · Salada farta · Legumes · Azeite</div><div class="mc-badges"><span class="badge b-both">Almoço normal — ref. livre no jantar</span></div></div>
+    <div class="mc"><div class="mc-num">Ref 3 · lanche</div><div class="mc-title">Iogurte + whey + frutas</div><div class="mc-items">Iogurte · Whey 30g · Banana + uva ou morango · Amêndoa · Chia</div><div class="mc-badges"><span class="badge b-both">Ambos — montam individual</span></div></div>
+    <div class="livre-box"><div class="mc-num" style="color:var(--accent)">Ref. livre ✦</div><div class="mc-title" style="color:var(--accent)">Jantar livre — até 1.000 kcal cada</div><div class="mc-items" style="margin-bottom:0">Restaurante, pizza, massa, hambúrguer — o que quiserem. Pode trocar só a ref. 4 ou as refs. 3+4 juntas.</div></div>
+  </div>
+
+  <div class="day-content" id="day-dom">
+    <div class="mc"><div class="mc-num">Ref 1</div><div class="mc-title">Ovos + pão (Ota) / tapioca (Lua) + mamão</div><div class="mc-items">Ovo · Pão de forma (Ota) / Tapioca (Lua) · Requeijão / ricota · Mamão · Chia + psyllium</div><div class="mc-badges"><span class="badge b-ota">Ota: pão 75g</span><span class="badge b-lua">Lua: tapioca 44g</span></div></div>
+    <div class="mc"><div class="mc-num">Ref 2 · almoço</div><div class="mc-title">Arroz + feijão + carne vermelha + salada</div><div class="mc-items">Arroz · Feijão preto · Patinho / músculo grelhado · Salada farta · Beterraba · Azeite</div><div class="mc-badges"><span class="badge b-both">Clássico de domingo</span></div><div class="mc-note">Bom dia para meal prep: frango extra, feijão e lavar vegetais da semana.</div></div>
+    <div class="mc"><div class="mc-num">Ref 3 · lanche</div><div class="mc-title">Iogurte + whey + banana + uva / maçã</div><div class="mc-items">Iogurte · Whey 30g · Banana + Uva ou Maçã fuji · Amêndoa · Chia + aveia (Lua)</div><div class="mc-badges"><span class="badge b-both">Montam individual</span></div></div>
+    <div class="mc"><div class="mc-num">Ref 4 · jantar</div><div class="mc-title">Frango + arroz (Ota) / batata (Lua) + legumes</div><div class="mc-items">Frango grelhado · Arroz (Ota) / Batata (Lua) · Cenoura + chuchu · Azeite</div><div class="mc-badges"><span class="badge b-both">Último dia antes do mercado</span></div></div>
+  </div>
+</div>
+
+<!-- COMPRAS -->
+<div class="section" id="compras">
+  <div class="tip" style="margin-bottom:1.25rem">Quantidades para <strong>7 dias</strong>, 4 refeições/dia, dois adultos. Margem de ~10% incluída. Mercado aos domingos.</div>
+
+  <h3>Proteínas animais</h3>
+  <div class="compras-grid">
+    <div class="item-row"><span>Peito de frango</span><span class="item-qty">~2,5 kg</span></div>
+    <div class="item-row"><span>Carne vermelha magra (patinho / filé / músculo)</span><span class="item-qty">~1,8 kg</span></div>
+    <div class="item-row"><span>Filé de tilápia</span><span class="item-qty">~800 g</span></div>
+    <div class="item-row"><span>Ovos inteiros</span><span class="item-qty">~35 unidades</span></div>
+  </div>
+
+  <h3>Cereais, carboidratos e leguminosas</h3>
+  <div class="compras-grid">
+    <div class="item-row"><span>Arroz branco</span><span class="item-qty">~2,5 kg</span></div>
+    <div class="item-row"><span>Feijão preto</span><span class="item-qty">~700 g</span></div>
+    <div class="item-row"><span>Feijão carioca</span><span class="item-qty">~300 g</span></div>
+    <div class="item-row"><span>Batata inglesa</span><span class="item-qty">~2 kg</span></div>
+    <div class="item-row"><span>Pão de forma tradicional</span><span class="item-qty">2 pacotes</span></div>
+    <div class="item-row"><span>Tapioca (goma) — Luana</span><span class="item-qty">~200 g</span></div>
+    <div class="item-row"><span>Macarrão integral — Luana</span><span class="item-qty">~500 g</span></div>
+    <div class="item-row"><span>Farelo de aveia — Luana</span><span class="item-qty">~200 g</span></div>
+  </div>
+
+  <h3>Laticínios e derivados</h3>
+  <div class="compras-grid">
+    <div class="item-row"><span>Iogurte natural</span><span class="item-qty">~14 potes 160 g</span></div>
+    <div class="item-row"><span>Requeijão cremoso</span><span class="item-qty">1 pote</span></div>
+    <div class="item-row"><span>Creme de ricota — Luana</span><span class="item-qty">1 pote</span></div>
+    <div class="item-row"><span>Queijo muçarela</span><span class="item-qty">~200 g</span></div>
+  </div>
+
+  <h3>Frutas</h3>
+  <div class="compras-grid">
+    <div class="item-row"><span>Mamão formosa</span><span class="item-qty">3–4 unidades</span></div>
+    <div class="item-row"><span>Banana nanica</span><span class="item-qty">~20 unidades</span></div>
+    <div class="item-row"><span>Uva rubi ou itália</span><span class="item-qty">~1,5 kg</span></div>
+    <div class="item-row"><span>Morango</span><span class="item-qty">~500 g</span></div>
+    <div class="item-row"><span>Maçã fuji</span><span class="item-qty">~10 unidades</span></div>
+    <div class="item-row"><span>Abacaxi</span><span class="item-qty">1 unidade</span></div>
+    <div class="item-row"><span>Manga — Luana</span><span class="item-qty">2 unidades</span></div>
+  </div>
+
+  <h3>Vegetais A — livres (salada)</h3>
+  <div class="compras-grid">
+    <div class="item-row"><span>Alface / rúcula / agrião</span><span class="item-qty">2–3 pés ou sacos</span></div>
+    <div class="item-row"><span>Tomate</span><span class="item-qty">~1 kg</span></div>
+    <div class="item-row"><span>Pepino</span><span class="item-qty">4 unidades</span></div>
+    <div class="item-row"><span>Brócolis / couve-flor</span><span class="item-qty">~600 g</span></div>
+    <div class="item-row"><span>Abobrinha</span><span class="item-qty">3 unidades</span></div>
+    <div class="item-row"><span>Espinafre / acelga</span><span class="item-qty">1 maço</span></div>
+  </div>
+
+  <h3>Vegetais B — pesados</h3>
+  <div class="compras-grid">
+    <div class="item-row"><span>Cenoura</span><span class="item-qty">~1 kg</span></div>
+    <div class="item-row"><span>Chuchu</span><span class="item-qty">4 unidades</span></div>
+    <div class="item-row"><span>Beterraba</span><span class="item-qty">3–4 unidades</span></div>
+  </div>
+
+  <h3>Gorduras e condimentos</h3>
+  <div class="compras-grid">
+    <div class="item-row"><span>Azeite extra virgem</span><span class="item-qty">~250 ml</span></div>
+    <div class="item-row"><span>Amêndoa</span><span class="item-qty">~280 g</span></div>
+    <div class="item-row"><span>Chia</span><span class="item-qty">~250 g</span></div>
+    <div class="item-row"><span>Psyllium</span><span class="item-qty">~70 g</span></div>
+    <div class="item-row"><span>Castanha de caju — Luana</span><span class="item-qty">~100 g</span></div>
+    <div class="item-row"><span>Molho de tomate — Luana</span><span class="item-qty">1 caixinha</span></div>
+  </div>
+
+  <h3>Suplementos — conferir estoque antes de comprar</h3>
+  <div class="compras-grid">
+    <div class="item-row"><span>Whey Protein (30g/dia × 2 × 7)</span><span class="item-qty">~420 g/semana</span></div>
+    <div class="item-row"><span>Creatina (5g/dia × 2 × 7)</span><span class="item-qty">~70 g/semana</span></div>
+    <div class="item-row"><span>Ômega-3 — só Otávio (2g/dia × 7)</span><span class="item-qty">~14 g/semana</span></div>
+  </div>
+</div>
+
+<!-- SUPLEMENTOS -->
+<div class="section" id="suplementos">
+  <table class="supl-table">
+    <thead>
+      <tr><th>Suplemento</th><th>Otávio</th><th>Luana</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="sn">Whey Protein</div><div class="sd">Proteína do soro do leite</div></td>
+        <td><div class="sn">30g / dia</div><div class="sd">Ref. 3 (lanche) — junto ao iogurte</div></td>
+        <td><div class="sn">30g / dia</div><div class="sd">Ref. 3 (lanche) — junto ao iogurte</div></td>
+      </tr>
+      <tr>
+        <td><div class="sn">Creatina monoidratada</div><div class="sd">Força e recuperação</div></td>
+        <td><div class="sn">5g / dia</div><div class="sd">Qualquer horário, junto a uma ref.</div></td>
+        <td><div class="sn">5g / dia</div><div class="sd">Qualquer horário, junto a uma ref.</div></td>
+      </tr>
+      <tr>
+        <td><div class="sn">Ômega-3</div><div class="sd">EPA / DHA</div></td>
+        <td><div class="sn">2g / dia</div><div class="sd">Manhã — junto à ref. 1 (pós-treino)</div></td>
+        <td><div class="sn" style="color:var(--muted)">—</div><div class="sd">Não prescrito</div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="tip"><strong>Dica prática — creatina:</strong> deixem as doses dos dois num pote único na bancada (10g por dia total). Misturar no iogurte, água ou suco zero. Sem sabor, não altera textura.</div>
+  <div class="tip tip-green"><strong>Hidratação:</strong> com creatina diária, beber água é ainda mais importante. Otávio: mín. 1.950 ml (ideal 3.900 ml). Luana: mín. 1.350 ml (ideal 2.700 ml).</div>
+
+  <h3>Meta de hidratação diária</h3>
+  <div class="agua-item">
+    <div class="agua-label"><strong style="color:var(--ota)">Otávio</strong><span>mín. 1.950 ml · ideal 3.900 ml</span></div>
+    <div class="bar-track"><div class="bar-fill-ota"></div></div>
+  </div>
+  <div class="agua-item">
+    <div class="agua-label"><strong style="color:var(--lua)">Luana</strong><span>mín. 1.350 ml · ideal 2.700 ml</span></div>
+    <div class="bar-track"><div class="bar-fill-lua"></div></div>
+  </div>
+</div>
+
+</main>
+
+<script>
+function show(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+}
+function showDay(id, el) {
+  document.querySelectorAll('.day-content').forEach(d => d.classList.remove('active'));
+  document.querySelectorAll('.dtab').forEach(t => t.classList.remove('active'));
+  document.getElementById('day-' + id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
